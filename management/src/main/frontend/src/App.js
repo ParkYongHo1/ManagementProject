@@ -1,19 +1,21 @@
-import logo from './logo.svg';
+
 import './App.css';
-import React ,{useState,useEffect} from 'react';
-import axios from 'axios';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Main from './Components/Main';
+import Login from './Components/Login';
+import { useEffect } from 'react';
 function App() {
-  const [data, setData] = useState("")
-  useEffect(()=>{
-    axios.get('/api/data')
-    .then(res=> setData(res.data))
-    .catch(err=>console.log(err))
-  },[])
-  return(
-    <div>
-      벡엔드 데이터 : {data}
+ 
+  return (
+    <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Main />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App;
