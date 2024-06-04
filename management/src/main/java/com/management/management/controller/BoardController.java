@@ -13,9 +13,4 @@ public class BoardController {
         return "hello world";
     }
 
-    @PostMapping("api/login")
-    public String postMethodName(@RequestBody LoginDTO loginDTO) {
-        return "User ID: " + loginDTO.getUserId() + ", Password: " + loginDTO.getUserPassword();
-    }
-
 }

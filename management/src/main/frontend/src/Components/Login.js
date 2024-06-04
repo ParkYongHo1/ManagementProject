@@ -12,7 +12,7 @@ const Login = () => {
     const openModal = () => {
         setModal(true);
     };
-
+    
     const closeModal = () => {
         setModal(false);
     };
@@ -26,7 +26,10 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('api/login', userInfo);
-            console.log(res.data);
+            if(res.data =="Login successful!"){
+                console.log("로그인 성공");
+            }
+
         } catch (error) {
             console.log(error);
         }
