@@ -2,13 +2,20 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import axios from 'axios';
 import ForgetPasswordModal from './ForgetPasswordModal';
+import SignUp from './SignUp';
 const Login = () => {
     const [modal, setModal] = useState(false);
+    const [signUpModal, setSignUpModal] = useState(false);
     const [userInfo, setUserInfo] = useState({
         userId: "",
         userPassword: ""
     });
-
+    const openSignUpModal = () =>{
+        setSignUpModal(true);
+    }
+    const closeSignUpModal = () => {
+        setSignUpModal(false);
+    }
     const openModal = () => {
         setModal(true);
     };
@@ -36,7 +43,7 @@ const Login = () => {
     };
     return (
         <Body>
-            {!modal && (
+            {(!modal && !signUpModal) && (
                 <LoginContainer>
                     <LeftContainer>
                         <img src={process.env.PUBLIC_URL + '/login.png'} alt="Login" />
@@ -62,8 +69,9 @@ const Login = () => {
                             </SignInButtonDiv>
                         </form>
                         <SignUpDiv>
+                            
                             <Span>Don't have an account?</Span>
-                            <Button>Sign Up</Button>
+                            <Button onClick={openSignUpModal}>Sign Up</Button>
                         </SignUpDiv>
                     </RightContainer>
                 </LoginContainer>
@@ -71,6 +79,11 @@ const Login = () => {
             {modal && (
                 <ForgetPasswordModal closeModal={closeModal} />
             )}
+            {
+                signUpModal && (
+                    <SignUp closeSignUpModal={closeSignUpModal} />
+                )
+            }
         </Body>
     );
     
@@ -199,6 +212,5 @@ const NotFind = styled.p`
     font-size: 12px;
     font-weight: 700;
 `;
-
 
 export default Login;

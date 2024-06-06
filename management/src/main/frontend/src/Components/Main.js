@@ -1,53 +1,122 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import styled from '@emotion/styled';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faBell} from "@fortawesome/free-regular-svg-icons";
+import {faPowerOff} from "@fortawesome/free-solid-svg-icons";
 function Main(props) {
-    const [content, setContent] = useState({
-        name : '',
-        email : '',
-        phone : ''
-    });
+    const [profileModal, setProfileModal] = useState(false);
 
-    const [divBox , setDivBox] = useState([]);
-    const changeInput = (e) => {
-        const { name, value} = e.target; 
-        setContent({...content , [name]:value}); // name -> e.target.name , value -> e.target.value
-        console.log(content);
+    const openProfileModal = () => {
+        setProfileModal(true);
     }
-    const onSubmitInput =  (e) => {
-        e.preventDefault();
-        setDivBox([...divBox, content]);
-        setContent({
-                name : '',
-                email : '',
-                phone : ''
-            })
+    const closeProfileModal = () => {
+        setProfileModal(false);
     }
-  
-    return (
-        <>
-            <form onSubmit={onSubmitInput}>
+    return (    
+        <MainHeaderContainer>
+            <MainHeaderDiv>
                 <div>
-                    <input type='text' onChange={changeInput} name="name" value={content.name} placeholder='name'/>
-                    <input type='text' onChange={changeInput} name="email" value={content.email} placeholder='email'/>
-                    <input type='text' onChange={changeInput} name="phone" value={content.phone} placeholder='phone'/>
+                    <MainHeaderImg src={process.env.PUBLIC_URL + '/mainlogo.png'} alt="mainLogo" width={118} height={44}/>
                 </div>
-                <button type='submit'> submit</button>
-            </form>
-            <div>
-                {divBox.map((content,index)=>{
-                    return(
-                        <div key={index}>
-                            <span>{content.name}</span>
-                            <span>{content.email}</span>
-                            <span>{content.phone}</span>
-                        </div>
-                    )
-                })}
-            </div>
-        </>
+                <MainHeaderSideDiv>
+                    <MainHeaderUserDiv onClick={openProfileModal}>
+                        <MainHeaderUserP>CA</MainHeaderUserP>
+                        <p style={{color:"white", fontWeight:'700'}}>박용호</p>
+                        {
+                            profileModal && (
+                                <MainHeaderProfileDiv>
+                                    <MainHeaderProfileP>프로필보기</MainHeaderProfileP>
+                                    <MainHeaderProfileP>로그아웃</MainHeaderProfileP>
+                                </MainHeaderProfileDiv>
+                            )
+                        }
+                    </MainHeaderUserDiv>
+                    <div style={{position: 'relative'}}>
+                        <FontAwesomeIcon icon={faBell} size='lg' style={{color:"white",cursor:'pointer'}} />
+                        <NotificationDot>.</NotificationDot>
+                    </div>
+                    <div>
+                    <FontAwesomeIcon icon={faPowerOff} size='lg' style={{color: "#ffffff",cursor:'pointer'}} />
+                    </div>
+                </MainHeaderSideDiv>
+            </MainHeaderDiv>
+        </MainHeaderContainer>
     );
 }
+const MainHeaderContainer = styled.div`
+    background-color : #651D16;
+    height:10vh;
+    width:100%;
+`
+const MainHeaderDiv = styled.div`
+    width: 1200px;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:0 auto;
+   
+`
+const MainHeaderImg = styled.img`
+    
+`
 
+const MainHeaderUserP = styled.p`
+    border-radius:50%;
+    border: 1px solid black;
+    margin-right:10px;
+    width:32px;
+    line-height: 32px;
+    color : #651D16;
+    background-color: white;
+    font-weight:700;
+`
+const MainHeaderUserDiv = styled.div`
+    display:flex;
+    width:200px;
+    align-items:center;
+    justify-content: end ;
+    cursor:pointer;
+    position:relative;
+`
+const MainHeaderSideDiv = styled.div`
+    display:flex;
+    width:300px;
+    align-items:center;
+    justify-content:space-between;
+`
+const NotificationDot = styled.p`
+    position: absolute;
+    top: -50px;
+    right: -8px;
+    font-size: 50px;
+    margin: 0;
+    color: red;
+    cursor:pointer;
+`;
+const MainHeaderProfileDiv = styled.div`
+    position: absolute;
+    padding: 10px 36px;
+    background: rgba(0, 0, 0, 0.6);    
+    top:70px;
+    left: 50%;
+    transform: translate(-0%, -0%);
+`
+const MainHeaderProfileP = styled.p`
+    font-weight:700;
+    color: #fffefe;
+    font-size: 14px;
+    white-space: nowrap;
+    padding:10px 0px;
+`
+const MainHeaderProfileP2 = styled.p`
+    padding:20px 0px;
+    margin: 0px;
+    font-weight:700;
+    &:hover{
+
+    }
+`
 export default Main;
