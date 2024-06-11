@@ -1,21 +1,22 @@
 import styled from '@emotion/styled';
-
+import Body from '../atoms/elements/Body';
+import LoginContainer from '../atoms/container/LoginContainer';
+import RightContainer from '../atoms/container/RightContainer';
+import P from '../atoms/elements/P';
+import SignInButtonDiv from '../atoms/elements/SignInButtonDiv';
 const SignUp = ({ closeSignUpModal }) => {
     return (
         <form>
             <Body>
                 <LoginContainer>
-                
                     <LeftContainer>
                         <Title>
                             <p>회원가입</p>
                         </Title>
-                    
                             <div>
                                 <P>매장코드</P>
                                 <Input type="text" name='userId' />
-                                <NotFind>아직 근무 매장 인증이 완료되지 않았습니다.</NotFind>
-                                
+                                <NotFind>아직 근무 매장 인증이 완료되지 않았습니다.</NotFind>                              
                                 <P>매장명</P>
                                 <Input type="text" name='userId' placeholder='매장 인증시 자동으로 입력됩니다.' readOnly/>
                                 <SignInButtonDiv>
@@ -25,7 +26,6 @@ const SignUp = ({ closeSignUpModal }) => {
                     </LeftContainer>
                     <RightContainer>
                         <Title>
-                        
                             <Xbtn onClick={closeSignUpModal}>X</Xbtn>    
                         </Title>
 
@@ -43,25 +43,14 @@ const SignUp = ({ closeSignUpModal }) => {
                                 <NotFind>비밀번호가 일치하지 않습니다.</NotFind>
                                 <SignInButtonDiv>
                                     <SignInButton>가입하기</SignInButton>                        
-                                </SignInButtonDiv>
-                                
-                    </RightContainer>
-                
+                                </SignInButtonDiv>                          
+                    </RightContainer>         
                 </LoginContainer>
             </Body>
         </form>
     );
 };
 
-const Body = styled.div`
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width:100%;
-    margin: 0;
-`;
 const Xbtn = styled.p`
     font-size: 20px;
     color:#c6cdd2;
@@ -71,34 +60,11 @@ const Xbtn = styled.p`
         color:black;
     }
 `
-const LoginContainer = styled.div`
-    display: flex;
-    background-color: white;
-    width: 1000px;
-    height: auto;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 90%;
-`;
-
 const LeftContainer = styled.div`
     width: 100%;
     max-width: 500px;
     padding:10px 50px;
     text-align:start;
-`;
-
-const RightContainer = styled.div`
-    width: 100%;
-    max-width: 500px;
-    border-left: 1px solid #c6cdd2;
-    padding: 20px 70px;
-    box-sizing: border-box;
-    text-align: start;
 `;
 
 const Title = styled.div`
@@ -108,11 +74,6 @@ const Title = styled.div`
     display:flex;
     justify-content: space-between;
     align-items:center;
-`;
-
-const P = styled.p`
-    color: #c6cdd2;
-    margin: 0;
 `;
 
 const Input = styled.input`
@@ -125,11 +86,6 @@ const Input = styled.input`
     &:focus {
         outline: none;
     }
-`;
-
-
-const SignInButtonDiv = styled.div`
-    text-align: center;
 `;
 
 const SignInButton = styled.button`

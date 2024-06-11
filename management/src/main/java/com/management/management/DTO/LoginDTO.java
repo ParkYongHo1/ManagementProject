@@ -1,23 +1,26 @@
 package com.management.management.DTO;
 
+import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Data
+@Getter
+@Setter
+@Service
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginDTO {
-    private String userId;
-    private String userPassword;
+    private String id;
+    private String user_id;
+    private String user_password;
+    private String user_name;
+    private String user_statement;
 
-    // Getters and Setters
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
 }

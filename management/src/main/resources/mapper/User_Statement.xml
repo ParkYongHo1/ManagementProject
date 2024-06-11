@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.management.management.mapper.UserMapper">
+    <select id="userLogin"  parameterType="java.lang.String" resultType="com.management.management.DTO.LoginDTO">
+       SELECT user_name ,user_id , user_password
+       FROM  `board`.`user`
+       WHERE user_id = #{user_id} AND user_password = #{user_password}  AND user_statement = 'Y'
+    </select>
+</mapper>
