@@ -6,7 +6,6 @@ const Body = ({ children }) => {
 };
 
 const StyledBody = styled.div`
-  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +13,5 @@ const StyledBody = styled.div`
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 `;
 export default Body;
