@@ -7,7 +7,7 @@ import LeftContainer from "../Atoms/LeftContainer";
 import RightContainer from "../Atoms/RightContainer";
 import SignUpLeftForm from "../Organisms/SignUpLeftForm";
 import SignUpRightForm from "../Organisms/SignUpRightForm";
-import LoginPage from "../page/LoginPage";
+import LoginPage from "../Pages/LoginPage";
 const SignUpTemplates = ({ signUpModal, setSignUpModal }) => (
   <>
     <Body>

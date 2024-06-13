@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ForgetUserInfoTemplates from "../Template/ForgetUserInfoTemplates";
+import ForgetUserInfoTemplates from "../Templates/ForgetUserInfoTemplates";
 
 const ForgetUserInfoPage = ({ forgetModal, setForgetModal }) => {
   console.log(forgetModal);

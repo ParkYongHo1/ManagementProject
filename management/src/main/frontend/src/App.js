@@ -1,10 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./Main/page/Main";
-import LoginPage from "./Login/page/LoginPage";
+import LoginPage from "./Login/Pages/LoginPage";
 import { useEffect } from "react";
-import AddUserInfoPage from "./Login/page/AddUserInfoPage";
-import Header from "./layout/Header";
+import AddUserInfoPage from "./Login/Pages/AddUserInfoPage";
 function App() {
   return (
     <div className="App">

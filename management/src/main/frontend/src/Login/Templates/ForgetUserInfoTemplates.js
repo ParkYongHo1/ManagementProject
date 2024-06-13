@@ -7,7 +7,7 @@ import LeftContainer from "../Atoms/LeftContainer";
 import RightContainer from "../Atoms/RightContainer";
 import ForgetUserInfoLeftForm from "../Organisms/ForgetUserInfoLeftForm";
 import ForgetUserInfoRightForm from "../Organisms/ForgetUserInfoRightForm";
-import LoginPage from "../page/LoginPage";
+import LoginPage from "../Pages/LoginPage";
 const ForgetUserInfoTemplates = ({ forgetModal, setForgetModal }) => (
   <>
     <Body>

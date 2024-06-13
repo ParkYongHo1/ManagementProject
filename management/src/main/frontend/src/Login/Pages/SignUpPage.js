@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SignUpTemplates from "../Template/SignUpTemplates";
+import SignUpTemplates from "../Templates/SignUpTemplates";
 
 const SignUpPage = ({ signUpModal, setSignUpModal }) => {
   return (

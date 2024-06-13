@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginTemplates from "../Template/LoginTemplates";
+import LoginTemplates from "../Templates/LoginTemplates";
 
 const LoginPage = () => {
   const [forgetModal, setForgetModal] = useState(false);

@@ -17,7 +17,6 @@ const ForgetUserInfoLeftForm = () => {
         <div>
           <P>사원명</P>
           <Input type="text" name="userId" />
-
           <P>생년월일</P>
           <Input type="password" name="userBirth" />
           <NotFind>생년월일 8자리 입력해주세요</NotFind>

@@ -6,8 +6,8 @@ import LoginContainer from "../Atoms/LoginContainer";
 import LeftContainer from "../Atoms/LeftContainer";
 import RightContainer from "../Atoms/RightContainer";
 import LoginForm from "../Organisms/LoginForm";
-import ForgetUserInfoPage from "../page/ForgetUserInfoPage";
-import SignUpPage from "../page/SignUpPage";
+import ForgetUserInfoPage from "../Pages/ForgetUserInfoPage";
+import SignUpPage from "../Pages/SignUpPage";
 const LoginTemplates = ({
   forgetModal,
   signUpModal,
