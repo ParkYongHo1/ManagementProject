@@ -26,9 +26,11 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
     try {
       const res = await axios.post("api/login", userInfo);
       if (res.data === "Login successful!") {
-        console.log("로그인 성공");
+        alert("로그인 되었습니다.");
+        window.location.href = "/home"; 
       } else {
-        console.log("로그인 실패");
+        alert("아이디/비밀번호가 일치하지않습니다. 다시입력해주세요.");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -47,7 +49,7 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
           name="userId"
           value={userInfo.userId}
         />
-        <NotFind>일치하는 아이디가 없습니다.</NotFind>
+        {/* <NotFind>일치하는 아이디가 없습니다.</NotFind> */}
         <P>Password</P>
         <Input
           type="password"
@@ -55,7 +57,7 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
           name="userPassword"
           value={userInfo.userPassword}
         />
-        <NotFind>일치하는 비밀번호가 없습니다.</NotFind>
+        {/* <NotFind>일치하는 비밀번호가 없습니다.</NotFind> */}
       </div>
       <div>
         <Button type="button" onClick={() => setForgetModal((prev) => !prev)}>
