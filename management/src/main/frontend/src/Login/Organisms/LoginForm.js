@@ -1,5 +1,5 @@
 // src/components/organisms/LoginForm.js
-import React, { useState } from "react";
+import React, { useState, use } from "react";
 import Input from "../Atoms/Input";
 import Button from "../Atoms/Button";
 import P from "../Atoms/P";
@@ -10,7 +10,9 @@ import SignInButton from "../Atoms/SignInButton";
 import SignInButtonDiv from "../Atoms/SignInButtonDiv";
 import SignUpDiv from "../Atoms/SignUpDiv";
 import Title from "../Atoms/Title";
+import { useNavigate } from "react-router-dom";
 const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     userId: "",
     userPassword: "",
@@ -27,10 +29,9 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
       const res = await axios.post("api/login", userInfo);
       if (res.data === "Login successful!") {
         alert("로그인 되었습니다.");
-        window.location.href = "/home"; 
+        navigate("/main");
       } else {
         alert("아이디/비밀번호가 일치하지않습니다. 다시입력해주세요.");
-        window.location.reload();
       }
     } catch (error) {
       console.log(error);
