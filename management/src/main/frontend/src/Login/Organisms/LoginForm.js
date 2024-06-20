@@ -1,5 +1,5 @@
 // src/components/organisms/LoginForm.js
-import React, { useState, use } from "react";
+import React, { useState } from "react";
 import Input from "../Atoms/Input";
 import Button from "../Atoms/Button";
 import P from "../Atoms/P";
@@ -11,8 +11,12 @@ import SignInButtonDiv from "../Atoms/SignInButtonDiv";
 import SignUpDiv from "../Atoms/SignUpDiv";
 import Title from "../Atoms/Title";
 import { useNavigate } from "react-router-dom";
-const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
+import { useDispatch } from "react-redux";
+import { login } from "../../slices/userSlice";
+const LoginForm = ({ setForgetModal, setSignUpModal }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [errorMsg, setErrorMsg] = useState(false);
   const [userInfo, setUserInfo] = useState({
     userId: "",
     userPassword: "",
@@ -28,10 +32,10 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
     try {
       const res = await axios.post("api/login", userInfo);
       if (res.data === "Login successful!") {
-        alert("로그인 되었습니다.");
-        navigate("/main");
+        dispatch(login(userInfo));
+        navigate("/");
       } else {
-        alert("아이디/비밀번호가 일치하지않습니다. 다시입력해주세요.");
+        setErrorMsg(true);
       }
     } catch (error) {
       console.log(error);
@@ -50,7 +54,11 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
           name="userId"
           value={userInfo.userId}
         />
-        {/* <NotFind>일치하는 아이디가 없습니다.</NotFind> */}
+        {errorMsg ? (
+          <NotFind>일치하는 아이디/비밀번호가 없습니다.</NotFind>
+        ) : (
+          <div></div>
+        )}
         <P>Password</P>
         <Input
           type="password"
@@ -58,7 +66,11 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
           name="userPassword"
           value={userInfo.userPassword}
         />
-        {/* <NotFind>일치하는 비밀번호가 없습니다.</NotFind> */}
+        {errorMsg ? (
+          <NotFind>일치하는 아이디/비밀번호가 없습니다.</NotFind>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div>
         <Button type="button" onClick={() => setForgetModal((prev) => !prev)}>
@@ -80,4 +92,4 @@ const AddUserInfoForm = ({ setForgetModal, setSignUpModal }) => {
   );
 };
 
-export default AddUserInfoForm;
+export default LoginForm;
