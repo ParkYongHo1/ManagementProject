@@ -24,4 +24,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //패스워드 찾기
     @Query("SELECT s FROM User s WHERE s.userId =?1 AND s.userBirth = ?2 AND s.userEmail = ?3")
     Optional<User> findByPass(String userId,String userBirth,String userEmail);
+
+    
 }

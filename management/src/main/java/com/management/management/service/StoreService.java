@@ -14,12 +14,7 @@ public class StoreService {
     @Autowired 
     private StoreRepository storeRepository;
 
-    public Optional<Store> findByStoreCode(Long storeCode) {
-        List<Store> stores = storeRepository.findAllByStoreCode(storeCode);
-        if (stores.isEmpty()) {
-            return Optional.empty();
-        } else {
-            return Optional.of(stores.get(0));
-        }
+    public Optional<Store> findByStoreCode(String storeCode) {
+       return storeRepository.findAllByStoreCode(storeCode);
     }
 }

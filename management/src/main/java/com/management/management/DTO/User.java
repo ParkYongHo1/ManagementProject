@@ -13,10 +13,12 @@ public class User {
 
     private String userId;
     private String userPassword;
+    private String userConfirmPassword;
     private String userName;
     private String userBirth;
     private String userEmail;
-
+    private String storeCode;
+    
     public String getUserName() {
         return userName;
     }
@@ -64,5 +66,21 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getUserConfirmPassword() {
+        return userConfirmPassword;
+    }
+
+    public void setUserConfirmPassword(String userConfirmPassword) {
+        this.userConfirmPassword = userConfirmPassword;
+    }
+
+    public String getStoreCode() {
+        return storeCode;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
     }
 }

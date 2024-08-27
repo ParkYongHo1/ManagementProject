@@ -12,7 +12,7 @@ public class Store {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeCode;
+    private String storeCode;
     private String storeName;
     private String storeAddress;
     private String storeTel;

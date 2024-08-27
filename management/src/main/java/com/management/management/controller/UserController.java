@@ -1,5 +1,7 @@
 package com.management.management.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.management.management.DTO.Store;
 import com.management.management.DTO.User;
+import com.management.management.mapper.StoreRepository;
+import com.management.management.service.StoreService;
 import com.management.management.service.UserService;
 
 @RestController
@@ -19,6 +24,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private StoreService storeService;
     /**
      * 로그인
      * @param user
@@ -72,6 +79,32 @@ public class UserController {
         }else{
             System.out.println(findPwdResult);
             return ResponseEntity.ok(findPwdResult);
+        }
+    }
+
+    /**
+     * 회원가입
+     * @param user
+     * @return
+     */
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody User user){
+        Optional<Store> findStore = storeService.findByStoreCode(user.getStoreCode());
+        if(!findStore.isPresent()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("매장인증실패");
+        }
+
+        String registerResult = userService.registerUser(user);
+
+        switch (registerResult) {
+            case "중복아이디":
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(registerResult);
+            case "비밀번호불일치":
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(registerResult);
+            case "가입성공" :
+                return ResponseEntity.status(HttpStatus.CREATED).body(registerResult); 
+            default:
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("비정상 오류.");   
         }
     }
 }

@@ -1,10 +1,13 @@
 package com.management.management.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.management.management.DTO.Store;
 import com.management.management.DTO.User;
+import com.management.management.mapper.StoreRepository;
 import com.management.management.mapper.UserRepository;
 
 @Service
@@ -13,6 +16,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired 
+    private StoreRepository storeRepository;
     /**
      * 로그인
      * @param userId
@@ -76,4 +81,23 @@ public class UserService {
     return "임시비밀번호를 이메일로 전송해드리겠습니다."+user.getUserPassword(); //임시 나중에 바꿀예정!!
    }
 
+   /**
+    * 회원가입
+    * @param user
+    * @return
+    */
+   public String registerUser(User user){
+    if(userRepository.findByUserId(user.getUserId()).isPresent()){
+        return "중복아이디";
+    }
+    if(!user.getUserPassword().equals(user.getUserConfirmPassword())){
+        return "비밀번호불일치";
+    } 
+    Optional<Store> findStore = storeRepository.findAllByStoreCode(user.getStoreCode());
+    if(!findStore.isPresent()){
+        return "매장인증실패";
+    }
+    userRepository.save(user);
+    return "가입성공";
+   }
 }
