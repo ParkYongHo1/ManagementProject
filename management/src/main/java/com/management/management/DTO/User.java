@@ -13,6 +13,33 @@ public class User {
 
     private String userId;
     private String userPassword;
+    private String userName;
+    private String userBirth;
+    private String userEmail;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserBirth() {
+        return userBirth;
+    }
+
+    public void setUserBirth(String userBirth) {
+        this.userBirth = userBirth;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     // Getters and Setters
     public Long getId() {

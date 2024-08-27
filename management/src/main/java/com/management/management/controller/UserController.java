@@ -42,6 +42,36 @@ public class UserController {
                 return "Invalid credentials.";
         }
     }
-   
-    
+   /**
+    * 아이디 찾기
+    * @param user
+    * @return
+    */
+    @PostMapping("/findingId")
+    public ResponseEntity<String> findingId(@RequestBody User user){
+        String findResult = userService.findingId(user.getUserName(), user.getUserBirth(), user.getUserEmail());
+
+        if(findResult.startsWith("Invalid no User!")){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(findResult);
+        }else{
+            System.out.println(findResult);
+            return ResponseEntity.ok(findResult);
+        }
+        
+    }
+    /**
+     * 비밀번호 찾기
+     * @param user
+     * @return
+     */
+    @PostMapping("/findingPwd")
+    public ResponseEntity<String> findingPwd(@RequestBody User user){
+        String findPwdResult = userService.findingPwd(user.getUserId(), user.getUserBirth(), user.getUserEmail());
+        if(findPwdResult.startsWith("Invalid no User!")){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(findPwdResult);
+        }else{
+            System.out.println(findPwdResult);
+            return ResponseEntity.ok(findPwdResult);
+        }
+    }
 }
