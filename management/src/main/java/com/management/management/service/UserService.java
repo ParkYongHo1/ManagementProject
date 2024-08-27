@@ -1,5 +1,6 @@
 package com.management.management.service;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,28 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User login(String userId, String userPassword) {
-        return userRepository.findByUserId(userId)
-                .filter(user -> user.getUserPassword().equals(userPassword))
-                .orElse(null);
-    }
+    /**
+     * 로그인
+     * @param userId
+     * @param userPassword
+     * @return
+     */
+    public String login(String userId,String userPassword){
+        Optional<User> optionalUser = userRepository.findByUserId(userId);
+
+        if(optionalUser.isEmpty()){
+            //아이디가 존재하지 않을 경우
+            return "Invalid user ID.";
+        }
+
+        User user = optionalUser.get();
+        if(!user.getUserPassword().equals(userPassword)){
+            //비밀번호가 틀렸을 경우
+            return "Invalid password.";
+        }
+        //로그인 성공
+        return "Login successful!";
+   }
+
+   
 }

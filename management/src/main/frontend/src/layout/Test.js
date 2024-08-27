@@ -59,7 +59,7 @@ function Test(props) {
                 </HeaderProfileDiv>
               )}
             </HeaderSideContent>
-
+              
             <HeaderSideContent onClick={() => setAlarmModal((prev) => !prev)}>
               <FontAwesomeIcon
                 icon={faBell}
