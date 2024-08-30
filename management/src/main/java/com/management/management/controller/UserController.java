@@ -89,7 +89,11 @@ public class UserController {
      */
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user){
-        Optional<Store> findStore = storeService.findByStoreCode(user.getStoreCode());
+        if (user.getStore() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Store 정보가 없습니다.");
+        }
+        
+        Optional<Store> findStore = storeService.findByStoreCode(user.getStore().getStoreCode());
         if(!findStore.isPresent()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("매장인증실패");
         }

@@ -1,86 +1,55 @@
 package com.management.management.DTO;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
+
+import lombok.Data;
 
 @Entity
+@Table(name = "USER")
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "USER_CD")
+    private int id;
 
+    @Column(name = "USER_ID", nullable = false)
     private String userId;
+
+    @Column(name = "USER_PWD", nullable = false)
     private String userPassword;
+
+    @Column(name = "USER_CONFIRMPWD", nullable = false)
     private String userConfirmPassword;
+
+    @Column(name = "USER_NAME", nullable = false)
     private String userName;
+
+    @Column(name = "USER_PHONE", nullable = false)
+    private String userPhone;
+
+    @Column(name = "USER_ADDRESS", nullable = false)
+    private String userAddress;
+
+    @Column(name = "USER_BIRTH", nullable = false)
     private String userBirth;
+
+    @Column(name = "USER_MAIL", nullable = false)
     private String userEmail;
-    private String storeCode;
+
+    @ManyToOne
+    @JoinColumn(name = "STORE_CODE",referencedColumnName = "STORE_CODE")
+    private Store store;
+
     
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserBirth() {
-        return userBirth;
-    }
-
-    public void setUserBirth(String userBirth) {
-        this.userBirth = userBirth;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserConfirmPassword() {
-        return userConfirmPassword;
-    }
-
-    public void setUserConfirmPassword(String userConfirmPassword) {
-        this.userConfirmPassword = userConfirmPassword;
-    }
-
-    public String getStoreCode() {
-        return storeCode;
-    }
-
-    public void setStoreCode(String storeCode) {
-        this.storeCode = storeCode;
-    }
+    
 }

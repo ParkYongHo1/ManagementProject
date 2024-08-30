@@ -93,7 +93,11 @@ public class UserService {
     if(!user.getUserPassword().equals(user.getUserConfirmPassword())){
         return "비밀번호불일치";
     } 
-    Optional<Store> findStore = storeRepository.findAllByStoreCode(user.getStoreCode());
+    if(user.getStore() == null || user.getStore().getStoreCode() == null){
+        return "매장정보가 유효하지 않습니다.";
+    }
+
+    Optional<Store> findStore = storeRepository.findByStoreCode(user.getStore().getStoreCode());
     if(!findStore.isPresent()){
         return "매장인증실패";
     }

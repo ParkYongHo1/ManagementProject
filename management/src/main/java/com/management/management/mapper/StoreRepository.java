@@ -13,6 +13,5 @@ import com.management.management.DTO.Store;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    @Query("select s from Store s where s.storeCode = :storeCode")
-    Optional<Store> findAllByStoreCode(@Param("storeCode") String storeCode);
+    Optional<Store> findByStoreCode(String storeCode);
 }

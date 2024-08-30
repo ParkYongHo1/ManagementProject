@@ -15,6 +15,6 @@ public class StoreService {
     private StoreRepository storeRepository;
 
     public Optional<Store> findByStoreCode(String storeCode) {
-       return storeRepository.findAllByStoreCode(storeCode);
+       return storeRepository.findByStoreCode(storeCode);
     }
 }
