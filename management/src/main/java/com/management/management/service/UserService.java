@@ -104,4 +104,21 @@ public class UserService {
     userRepository.save(user);
     return "가입성공";
    }
+
+    /**
+    * 사용자 가입승인
+    * @param user
+    * @return
+    */
+    public String certifyUser(String userId){
+        Optional<User> userOpt = userRepository.findByUserId(userId);
+        if(userOpt.isPresent()){
+            User user = userOpt.get();
+            user.setUserCert("Y");
+            userRepository.save(user);
+            return "success";
+        }
+        return "fail";
+    }
+
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -110,5 +111,18 @@ public class UserController {
             default:
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("비정상 오류.");   
         }
+    }
+    /**
+     * 사용자 가입승인
+     * @param user
+     * @return
+     */
+    @PostMapping("/certify")
+    public ResponseEntity<String> certifyUser(@RequestParam String userId){
+        String result = userService.certifyUser(userId);
+        if("success".equals(result)){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
     }
 }

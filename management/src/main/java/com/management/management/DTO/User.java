@@ -50,6 +50,10 @@ public class User {
     @JoinColumn(name = "STORE_CODE",referencedColumnName = "STORE_CODE")
     private Store store;
 
-    
+    @Column(name="USER_CERT",nullable = false)
+    private String userCert;
+
+    @Column(name="USER_ROLE",nullable = false)
+    private String userRole;
     
 }
