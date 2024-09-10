@@ -121,4 +121,29 @@ public class UserService {
         return "fail";
     }
 
+    /**
+     * 사용자 정보 수정(비밀번호,휴대폰번호,이메일번경)
+     * @param user
+     * @return
+     */
+    public String infoUpdate(String userId,User updatedUser){
+        Optional<User> userOpt = userRepository.findByUserId(userId);
+        if(userOpt.isPresent()){
+           User exitUser = userOpt.get();
+
+           //비밀번호가 NULL이 거나 비밀번호가 일치하지않을때 체크
+           if(updatedUser.getUserPassword() != null &&  !updatedUser.getUserPassword().isEmpty() && updatedUser.getUserPassword().equalsIgnoreCase(updatedUser.getUserConfirmPassword())) {   
+            exitUser.setUserPassword(updatedUser.getUserPassword());
+            exitUser.setUserConfirmPassword(updatedUser.getUserConfirmPassword());
+        }else{
+            return "비밀번호 재입력 바람.";
+           }
+
+           userRepository.save(exitUser);
+           return "UPDATE SUCCESS!";
+        }else{
+            return "UPDATE FAIL!";
+        }
+
+    }
 }

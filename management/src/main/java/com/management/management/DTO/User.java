@@ -55,5 +55,6 @@ public class User {
 
     @Column(name="USER_ROLE",nullable = false)
     private String userRole;
+
     
 }
