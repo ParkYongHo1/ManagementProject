@@ -48,7 +48,10 @@ public class UserController {
                 return "Invalid credentials.";
             case "Login successful!":
                 System.out.println("로그인 성공");
-                return "Login successful!";    
+                return "Login successful!";
+            case "no user":
+                System.out.println("퇴사한 직원입니다."); 
+                return "no user!";   
             default:
                 return "Invalid credentials.";
         }
@@ -138,6 +141,19 @@ public class UserController {
     public ResponseEntity<String> updateUser(@PathVariable String userId, @RequestBody User updatedUser ){
         String result = userService.infoUpdate(userId, updatedUser);
         if("UPDATE SUCCESS!".equals(result)){
+            return ResponseEntity.ok(result);
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+        }
+    }
+
+    /**
+     * 사용자 퇴사 처리
+     */
+    @PostMapping("/userDelete/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userId,@RequestBody User updatedUser){
+        String result = userService.userDelete(userId);
+        if("success".equals(result)){
             return ResponseEntity.ok(result);
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);

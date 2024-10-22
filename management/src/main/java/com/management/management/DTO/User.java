@@ -1,5 +1,7 @@
 package com.management.management.DTO;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,5 +58,7 @@ public class User {
     @Column(name="USER_ROLE",nullable = false)
     private String userRole;
 
-    
+    @Column(name = "USER_QUITDATE")
+    private LocalDate userQuitdate;
+
 }

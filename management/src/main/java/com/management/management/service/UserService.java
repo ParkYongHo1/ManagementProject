@@ -1,5 +1,6 @@
 package com.management.management.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class UserService {
             //비밀번호가 틀렸을 경우
             return "Invalid password.";
         }
+
+        //퇴사자 로그인 차단.
+        if(user.getUserQuitdate() != null){
+            return "no user";
+        }
+
         //로그인 성공
         return "Login successful!";
    }
@@ -145,5 +152,21 @@ public class UserService {
             return "UPDATE FAIL!";
         }
 
+    }
+
+    /**
+     * 사용자 퇴사처리
+     */
+    public String userDelete(String userId){
+        Optional<User> userOpt = userRepository.findByUserId(userId);
+        LocalDate currentDate = LocalDate.now();
+
+        if(userOpt.isPresent()){
+            User user = userOpt.get();
+            user.setUserQuitdate(currentDate);
+            userRepository.save(user);
+            return "success";
+        }
+        return "fail";
     }
 }
